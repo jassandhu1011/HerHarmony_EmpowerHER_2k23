@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles1.css">
+    <title>Your Webpage</title>
+</head>
+<body>
+    <a href="quiz.html" class="quiz-button">Take a Quiz</a>
+    <a href="join.html" class="join-button">Join us</a>
+            <h1>Menstrual health</h1>
+                            <div class="container">
+      
+                    <div class="form-group">
+                        <h2>Period tracker</h2>
+                        <label for="start-date">Enter the first day of your period:</label>
+                        <input type="date" id="start-date" name="start-date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="period-length">Average period length (in days):</label>
+                        <input type="number" id="period-length" name="period-length" required>
+                    </div>
+                    <button id="track-button">Track Period</button>
+            
+                    <h2>Period History</h2>
+                    <table id="period-table">
+                        <tr>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Duration</th>
+                        </tr>
+                    </table>
+            
+                    <h2>Predicted Next Cycle</h2>
+                    <div id="prediction"></div>
+                </div>
+            
+                <script>
+                    document.getElementById('track-button').addEventListener('click', function () {
+                        const startDate = new Date(document.getElementById('start-date').value);
+                        const periodLength = parseInt(document.getElementById('period-length').value);
+                        const periodEnd = new Date(startDate);
+                        periodEnd.setDate(periodEnd.getDate() + (periodLength - 1));
+            
+                        const duration = periodLength;
+            
+                        const table = document.getElementById('period-table');
+                        const newRow = table.insertRow(-1);
+                        const startDateCell = newRow.insertCell(0);
+                        const endDateCell = newRow.insertCell(1);
+                        const durationCell = newRow.insertCell(2);
+            
+                        startDateCell.textContent = formatDate(startDate);
+                        endDateCell.textContent = formatDate(periodEnd);
+                        durationCell.textContent = duration + " days";
+            
+                        const predictionDate = new Date(periodEnd);
+                        predictionDate.setDate(predictionDate.getDate() + 1);
+                        const predictionEnd = new Date(predictionDate);
+                        predictionEnd.setDate(predictionEnd.getDate() + (periodLength - 1));
+            
+                        document.getElementById('prediction').textContent = `Start Date: ${formatDate(predictionDate)} - End Date: ${formatDate(predictionEnd)}`;
+            
+                        document.getElementById('start-date').value = '';
+                        document.getElementById('period-length').value = '';
+                    });
+            
+                    function formatDate(date) {
+                        const options = { year: 'numeric', month: 'numeric', day: 'numeric' };
+                        return new Intl.DateTimeFormat('en-US', options).format(date);
+                    }
+                </script>
+            </div>
+</body>
+</html>
