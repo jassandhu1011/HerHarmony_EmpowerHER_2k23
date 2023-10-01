@@ -1,0 +1,33 @@
+/* Reset some default styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-image: url(h22.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* Style the challenge list container */
+.challenge-list {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: left;
+}
+
+h1 {
+    color: #333;
+}
+
+/* Style the challenge list items */
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+/* Additional styles can be added based on your design preferences */
